@@ -36,7 +36,8 @@
     "ampersand-router": "^4.0.0",
     "hjs-webpack": "^8.3.0",
     "leaflet": "^1.0.1",
-    "react": "^15.3.1"
+    "react": "^15.3.1",
+    "xhr": "^2.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

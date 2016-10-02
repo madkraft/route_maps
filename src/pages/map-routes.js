@@ -7,7 +7,7 @@ export default React.createClass({
   render () {
     return (
       <div>
-        <Map />
+        <Map {...this.props} />
       </div>
     )
   }
