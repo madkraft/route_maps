@@ -1,6 +1,16 @@
+import '../node_modules/leaflet/dist/leaflet.css'
 import './styles/main.styl'
-import React from 'react'
-import {render} from 'react-dom'
-import Hello from './Hello'
+import app from 'ampersand-app'
+import Router from './core/router'
 
-render(<Hello />, document.getElementById('root'))
+window.app = app // for debugging purposes
+
+app.extend({
+  init () {
+    window.L_PREFER_CANVAS = true // force Leaflet to use the Canvas back-end (if available) for vector layers instead of SVG
+    this.router = new Router()
+    this.router.history.start()
+  }
+})
+
+app.init()
