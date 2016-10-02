@@ -1,5 +1,5 @@
 import '../node_modules/leaflet/dist/leaflet.css'
-import './styles/main.styl'
+import './main.styl'
 import app from 'ampersand-app'
 import Router from './core/router'
 
@@ -14,3 +14,24 @@ app.extend({
 })
 
 app.init()
+
+let onTransitionEnd = function onTransitionEnd (element) {
+  element.classList.remove('side-nav-animatable')
+  element.removeEventListener('transitionEnd', onTransitionEnd)
+}
+
+app.on('sideNav:open', () => {
+  const sideNavEl = document.querySelector('.js-side-nav')
+
+  sideNavEl.classList.add('side-nav-animatable')
+  sideNavEl.classList.add('side-nav-visible')
+  sideNavEl.addEventListener('transitionEnd', onTransitionEnd(sideNavEl))
+})
+
+app.on('sideNav:close', () => {
+  const sideNavEl = document.querySelector('.js-side-nav')
+
+  sideNavEl.classList.add('side-nav-animatable')
+  sideNavEl.classList.remove('side-nav-visible')
+  sideNavEl.addEventListener('transitionEnd', onTransitionEnd(sideNavEl))
+})

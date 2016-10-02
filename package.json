@@ -8,7 +8,7 @@
     "test": "standard && ava \"**/*.test.js\" --verbose --watch",
     "yolo": "git add --all && git commit -am \"$(date)\" && git push origin master",
     "build": "rm -r public && NODE_ENV=production webpack",
-    "deploy": "npm run build && surge -p public -d somedomain.com"
+    "deploy": "npm run build && surge -p public -d routemaps.surge.sh"
   },
   "standard": {
     "ignore": [

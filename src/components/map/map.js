@@ -8,7 +8,7 @@ const mapConfig = {
   initialZoom: 5,
   maxZoom: 7,
   minZoom: 4,
-  allowLocation: true,
+  initialView: [50.110, 8.682],
   maxBounds: {
     southWest: [32.970699, -12.33664],
     northEast: [73.042122, 38.0415]
@@ -18,17 +18,29 @@ const mapConfig = {
 export default React.createClass({
   displayName: 'Map',
 
-  createMap (map) {
-    map.locate({
-      setView: mapConfig.allowLocation
-    })
+  createMap (element, map) {
+    const myMap = L.map(element, {
+      zoom: mapConfig.initialZoom,
+      maxBounds: [mapConfig.maxBounds.southWest, mapConfig.maxBounds.northEast]
+    }).setView(mapConfig.initialView)
 
+    this.addLayerAndOptions(myMap)
+    this.positionAirports(myMap)
+  },
+
+  addLayerAndOptions (map) {
     map.options.minZoom = mapConfig.minZoom
     map.options.maxZoom = mapConfig.maxZoom
-
     L.tileLayer(mapConfig.mapLayer, {
       attribution: mapConfig.attribution
     }).addTo(map)
+  },
+
+  positionAirports (myMap) {
+    const {airports} = this.props
+    airports.map(airport => {
+      this.addMarker(myMap, [airport.latitude, airport.longitude])
+    })
   },
 
   addMarker (map, latLng, route = {start: false}) {
@@ -48,18 +60,8 @@ export default React.createClass({
   },
 
   componentDidMount () {
-    const myMap = L.map(ReactDOM.findDOMNode(this), {
-      zoom: mapConfig.initialZoom,
-      maxBounds: [mapConfig.maxBounds.southWest, mapConfig.maxBounds.northEast]
-    })
-
-    const {airports} = this.props
-
-    this.createMap(myMap)
-
-    airports.map(airport => {
-      this.addMarker(myMap, [airport.latitude, airport.longitude])
-    })
+    const element = ReactDOM.findDOMNode(this)
+    this.createMap(element)
   },
 
   render () {
