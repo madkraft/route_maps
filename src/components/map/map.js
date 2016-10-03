@@ -46,7 +46,7 @@ export default React.createClass({
   },
 
   addMarker (map, latLng, airportName, airportCountry) {
-    let innerCircle = L.circle(latLng, {
+    L.circle(latLng, {
       stroke: false,
       fillColor: '#7ac087',
       fillOpacity: 0.7,
