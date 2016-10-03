@@ -1,4 +1,6 @@
-import '../node_modules/leaflet/dist/leaflet.css'
+import 'leaflet/dist/leaflet.css'
+import 'normalize-css/normalize.css'
+import 'octicons/build/font/octicons.css'
 import './main.styl'
 import app from 'ampersand-app'
 import Router from './core/router'
@@ -20,18 +22,18 @@ let onTransitionEnd = function onTransitionEnd (element) {
   element.removeEventListener('transitionEnd', onTransitionEnd)
 }
 
-app.on('sideNav:open', () => {
-  const sideNavEl = document.querySelector('.js-side-nav')
+app.on('sideNav:open', (payload) => {
+  const element = payload.element
 
-  sideNavEl.classList.add('side-nav-animatable')
-  sideNavEl.classList.add('side-nav-visible')
-  sideNavEl.addEventListener('transitionEnd', onTransitionEnd(sideNavEl))
+  element.classList.add('side-nav-animatable')
+  element.classList.add('side-nav-visible')
+  element.addEventListener('transitionEnd', onTransitionEnd(element))
 })
 
-app.on('sideNav:close', () => {
-  const sideNavEl = document.querySelector('.js-side-nav')
+app.on('sideNav:close', (payload) => {
+  const element = payload.element
 
-  sideNavEl.classList.add('side-nav-animatable')
-  sideNavEl.classList.remove('side-nav-visible')
-  sideNavEl.addEventListener('transitionEnd', onTransitionEnd(sideNavEl))
+  element.classList.add('side-nav-animatable')
+  element.classList.remove('side-nav-visible')
+  element.addEventListener('transitionEnd', onTransitionEnd(element))
 })

@@ -1,0 +1,29 @@
+*, *:after, *:before
+  box-sizing: border-box
+
+body
+  font-family: $font-sans-serif
+  font-size: $font-base
+  line-height: $line-height-base
+  color: $gray-dark
+  text-rendering: optimizeSpeed
+  background: $gray-dark
+
+//- Links
+a
+  color: white
+  text-decoration: none
+  cursor: pointer
+
+  &:focus
+    outline: none
+
+  &:hover
+    text-decoration: underline
+
+hr
+  border: 0
+  height: 0
+  border-top: 1px solid rgba(0, 0, 0, 0.1)
+  border-bottom: 1px solid $gray-light
+  margin: 16px 0

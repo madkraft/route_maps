@@ -6,7 +6,7 @@ export default React.createClass({
 
   showSideNav (event) {
     event.preventDefault()
-    app.trigger('sideNav:open')
+    app.trigger('sideNav:open', {element: document.querySelector('.js-side-nav')})
   },
 
   render () {
