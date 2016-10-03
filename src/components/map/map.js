@@ -38,9 +38,11 @@ export default React.createClass({
 
   positionAirports (myMap) {
     const {airports} = this.props
-    airports.map(airport => {
-      this.addMarker(myMap, [airport.latitude, airport.longitude])
-    })
+    if (airports) {
+      airports.map(airport => {
+        this.addMarker(myMap, [airport.latitude, airport.longitude])
+      })
+    }
   },
 
   addMarker (map, latLng, route = {start: false}) {

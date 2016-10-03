@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import app from 'ampersand-app'
+import navHelper from '../../core/nav-helper'
 
 export default React.createClass({
   displayName: 'Navigation',
@@ -11,6 +12,7 @@ export default React.createClass({
   },
 
   blockClick (event) {
+    navHelper(event)
     event.stopPropagation()
   },
 
@@ -75,6 +77,12 @@ export default React.createClass({
     }
   },
 
+  onSubmit (event) {
+    event.preventDefault()
+    console.log('searching!')
+    this.hideSideNav(event)
+  },
+
   render () {
     return (
       <aside className='js-side-nav side-nav'
@@ -89,15 +97,15 @@ export default React.createClass({
           <ul className='side-nav-content'>
             <li>
               <span className='octicon octicon-info' />
-              <a href='#0'>Information</a>
+              <a href='/info'>Information</a>
             </li>
             <li>
               <span className='octicon octicon-globe' />
-              <a href='#0'>Map</a>
+              <a href='/'>Map</a>
             </li>
           </ul>
           <hr />
-          <form>
+          <form onSubmit={this.onSubmit}>
             <div className='form-element'>
               <label htmlFor='location'>Search location:</label>
               <input type='text' id='location' placeholder='Departure Airport' className='form-input input-dark' />

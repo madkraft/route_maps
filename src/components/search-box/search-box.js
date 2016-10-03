@@ -12,13 +12,13 @@ export default React.createClass({
   render () {
     return (
       <div className='search-box'>
-        <form>
+        <form className='search-form'>
           <div className='form-element'>
             <input type='text' placeholder='Search location' className='form-input' />
           </div>
-          <button type='submit' className='button button-primary'>Search</button>
+          <button type='submit' className='button button-search mega-octicon octicon-search' />
         </form>
-        <button className='menu-toggle' onClick={this.showSideNav} >menu</button>
+        <button className='button menu-toggle octicon octicon-three-bars' onClick={this.showSideNav} />
       </div>
     )
   }

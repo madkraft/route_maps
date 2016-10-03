@@ -1,11 +1,12 @@
 import React from 'react'
+import Information from '../components/information/information'
 
 export default React.createClass({
-  displayName: 'Info',
+  displayName: 'InfoPage',
   render () {
     return (
-      <div>
-        <h2>INFO!!</h2>
+      <div className='page'>
+        <Information />
       </div>
     )
   }
