@@ -40,25 +40,30 @@ export default React.createClass({
     const {airports} = this.props
     if (airports) {
       airports.map(airport => {
-        this.addMarker(myMap, [airport.latitude, airport.longitude])
+        this.addMarker(myMap, [airport.latitude, airport.longitude], airport.name, airport.country.name)
       })
     }
   },
 
-  addMarker (map, latLng, route = {start: false}) {
-    // let outerCirlde = L.circle(latLng, {
-    //   stroke: false,
-    //   fillColor: '#989898',
-    //   fillOpacity: 0.5,
-    //   radius: route.start ? 100000 : 50000
-    // }).addTo(map)
-
-    L.circle(latLng, {
+  addMarker (map, latLng, airportName, airportCountry) {
+    let innerCircle = L.circle(latLng, {
       stroke: false,
       fillColor: '#7ac087',
       fillOpacity: 0.7,
-      radius: route.start ? 30000 : 15000
+      radius: 15000
     }).addTo(map)
+
+    let outerCirlde = L.circle(latLng, {
+      stroke: false,
+      fillColor: '#989898',
+      fillOpacity: 0.1,
+      radius: 50000
+    }).addTo(map)
+
+    outerCirlde.bindPopup(
+      `${airportName} / ${airportCountry}` +
+      '<button class="button">Book now</button>'
+    )
   },
 
   componentDidMount () {
