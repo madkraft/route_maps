@@ -14,7 +14,7 @@ export default React.createClass({
         <a href='/' className='button'>Back</a>
         <div className='info'>
           <h1 className='info-title'>Info</h1>
-          <p>I took this project as a chance to try react</p>
+          <p>I have undertaken this project not only as a JS task but also as a chance to try React and experiment.</p>
         </div>
       </div>
     )
